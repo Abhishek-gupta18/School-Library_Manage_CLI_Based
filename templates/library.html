@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Library Management - School Management System{% endblock %}
+
+{% block content %}
+<h2 style="color: #495057; margin-bottom: 30px;">Library Management System</h2>
+
+<!-- Add Book Section -->
+<div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+    <h3 style="color: #495057; margin-bottom: 20px;">Add New Book</h3>
+    <form method="POST" action="{{ url_for('add_book') }}">
+        <div class="grid">
+            <div class="form-group">
+                <label for="book_id">Book ID</label>
+                <input type="text" id="book_id" name="book_id" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Add Book</button>
+    </form>
+</div>
+
+<!-- Book Operations Section -->
+<div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+    <h3 style="color: #495057; margin-bottom: 20px;">Book Operations</h3>
+    <div class="grid">
+        <div>
+            <h4>Issue Book</h4>
+            <form method="POST" action="{{ url_for('issue_book') }}" style="display: inline-block;">
+                <div class="form-group">
+                    <input type="text" name="book_id" placeholder="Enter Book ID" required style="margin-bottom: 10px;">
+                </div>
+                <button type="submit" class="btn btn-danger">Issue Book</button>
+            </form>
+        </div>
+        
+        <div>
+            <h4>Return Book</h4>
+            <form method="POST" action="{{ url_for('return_book') }}" style="display: inline-block;">
+                <div class="form-group">
+                    <input type="text" name="book_id" placeholder="Enter Book ID" required style="margin-bottom: 10px;">
+                </div>
+                <button type="submit" class="btn">Return Book</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Books List -->
+<h3 style="color: #495057; margin-bottom: 20px;">Available Books</h3>
+{% if books %}
+    <table>
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Available Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p style="text-align: center; color: #6c757d; font-style: italic;">No books available in the library.</p>
+{% endif %}
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Home</a>
+</div>
+{% endblock %}

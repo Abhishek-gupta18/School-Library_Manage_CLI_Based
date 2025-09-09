@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home - School Management System{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h2 style="color: #495057; margin-bottom: 20px;">Welcome to School Management System</h2>
+    <p style="color: #6c757d; font-size: 1.1em;">Choose from the available services below</p>
+</div>
+
+<div class="grid">
+    <div class="card">
+        <h3>Student Admission</h3>
+        <p>Register new students and manage admission records</p>
+        <a href="{{ url_for('admission') }}" class="btn">New Admission</a>
+    </div>
+    
+    <div class="card">
+        <h3>Transfer Certificate</h3>
+        <p>Apply for transfer certificates for students leaving the school</p>
+        <a href="{{ url_for('tc') }}" class="btn">Apply for TC</a>
+    </div>
+    
+    <div class="card">
+        <h3>Student Marks</h3>
+        <p>Record and manage student examination marks and grades</p>
+        <a href="{{ url_for('marks') }}" class="btn">Enter Marks</a>
+    </div>
+    
+    <div class="card">
+        <h3>Suggestions</h3>
+        <p>Submit feedback and suggestions for school improvement</p>
+        <a href="{{ url_for('suggestion') }}" class="btn">Give Suggestion</a>
+    </div>
+    
+    <div class="card">
+        <h3>Library Management</h3>
+        <p>Manage book inventory, issue and return books</p>
+        <a href="{{ url_for('library') }}" class="btn">Manage Library</a>
+    </div>
+</div>
+{% endblock %}

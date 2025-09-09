@@ -20,7 +20,7 @@ if n == 1:
     Fname = input("enter father's name:")
     Mname = input("enter mother's name:")
     print('''M = Male
-MF = Female
+F = Female
 O = Others''')
     Sex = input('enter from above:')
     if Sex == 'M':
